@@ -1,0 +1,26 @@
+/* Design-Tokens – 1:1 aus dem Figma-File (Collections Color [Dark/Light] und Spacing) */
+:root {
+  --space-2xs: 2px; --space-xs: 4px; --space-sm: 8px; --space-md: 12px;
+  --space-lg: 16px; --space-xl: 24px; --space-2xl: 32px;
+  --radius-sm: 6px; --radius-md: 10px; --radius-lg: 16px;
+}
+:root, [data-theme="dark"] {
+  --bg-app: #101312; --bg-surface: #212624; --bg-raised: #292f2c;
+  --border-default: #363d3a; --text-primary: #f3f5f4; --text-secondary: #aeb6b2;
+  --text-on-zone: #101312; --track-default: #363d3a;
+  --zone-normal: #a6ce39; --zone-hinweis: #4fc3e8; --zone-warnung: #f2b632; --zone-kritisch: #ff6b4a;
+  --data-forecast: #b58cff;
+  --zone-normal-tint: #a6ce392e; --zone-hinweis-tint: #4fc3e82e; --zone-warnung-tint: #f2b6322e; --zone-kritisch-tint: #ff6b4a2e;
+  --zone-normal-dim: #a6ce3966; --zone-hinweis-dim: #4fc3e866; --zone-warnung-dim: #f2b63266; --zone-kritisch-dim: #ff6b4a66;
+  --data-forecast-dim: #b58cff73;
+}
+[data-theme="light"] {
+  --bg-app: #f3f5f4; --bg-surface: #ffffff; --bg-raised: #e6eae8;
+  --border-default: #cdd3d0; --text-primary: #181c1a; --text-secondary: #4c5551;
+  --text-on-zone: #ffffff; --track-default: #cdd3d0;
+  --zone-normal: #587a12; --zone-hinweis: #0a7ba6; --zone-warnung: #a86f00; --zone-kritisch: #c2361a;
+  --data-forecast: #6a3dd0;
+  --zone-normal-tint: #587a122e; --zone-hinweis-tint: #0a7ba62e; --zone-warnung-tint: #a86f002e; --zone-kritisch-tint: #c2361a2e;
+  --zone-normal-dim: #587a1266; --zone-hinweis-dim: #0a7ba666; --zone-warnung-dim: #a86f0066; --zone-kritisch-dim: #c2361a66;
+  --data-forecast-dim: #6a3dd073;
+}

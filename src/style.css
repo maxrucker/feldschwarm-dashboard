@@ -1,0 +1,94 @@
+@import './tokens.css';
+* { box-sizing: border-box; }
+body { margin: 0; background: var(--bg-app); color: var(--text-primary); font: 14px/1.4 'Noto Sans', system-ui, sans-serif; }
+h1, h2, h3, h4 { margin: 0; }
+.muted { color: var(--text-secondary); font-size: 12px; }
+main { max-width: 1280px; margin: 0 auto; padding: var(--space-xl); display: grid; gap: var(--space-2xl); }
+.topbar { display: flex; align-items: center; justify-content: space-between; gap: var(--space-lg); flex-wrap: wrap; }
+.controls { display: flex; align-items: center; gap: var(--space-md); }
+button, input { font: inherit; color: inherit; }
+button { background: var(--bg-raised); border: 1px solid var(--border-default); border-radius: var(--radius-md); padding: var(--space-sm) var(--space-md); cursor: pointer; }
+button:hover { border-color: var(--text-secondary); }
+button:focus-visible, input:focus-visible { outline: 2px solid var(--zone-hinweis); outline-offset: 2px; }
+input[type=range] { width: 260px; accent-color: var(--zone-normal); }
+.clock { font-weight: 700; font-variant-numeric: tabular-nums; min-width: 3.5em; }
+.row { display: flex; flex-wrap: wrap; gap: var(--space-lg); align-items: flex-start; }
+section > h2 { font-size: 20px; margin-bottom: var(--space-lg); }
+
+/* Widget-Basis: Raster 1x1 = 176 px */
+.widget { container-type: inline-size; background: var(--bg-surface); border: 1px solid var(--border-default); border-radius: var(--radius-lg); padding: var(--space-lg); display: flex; gap: var(--space-lg); height: 176px; overflow: hidden; }
+.widget--1x1 { width: 176px; } .widget--2x1 { width: 368px; } .widget--2x2 { width: 368px; height: 368px; }
+.widget__main { flex: 1; min-width: 0; display: flex; flex-direction: column; align-items: center; }
+.widget__head { display: flex; justify-content: space-between; align-self: stretch; gap: var(--space-sm); }
+.widget__head h3 { font-size: 13px; }
+.widget__side { width: 160px; border-left: 1px solid var(--border-default); padding-left: var(--space-lg); display: flex; flex-direction: column; gap: var(--space-xs); }
+.widget__side h3 { font-size: 13px; }
+.big { font-size: 32px; font-weight: 700; line-height: 1.1; } .big small { font-size: 12px; font-weight: 400; margin-left: 2px; color: var(--text-secondary); }
+.big--xl { font-size: 44px; }
+.reco { background: var(--bg-raised); border-radius: var(--radius-md); padding: var(--space-sm); display: flex; flex-direction: column; margin-top: auto; }
+.reco__val { font-size: 20px; }
+.zone-hinweis .reco__val { color: var(--zone-hinweis); } .zone-warnung .reco__val { color: var(--zone-warnung); } .zone-kritisch .reco__val { color: var(--zone-kritisch); }
+
+.gauge-wrap { position: relative; width: 112px; height: 112px; margin-top: var(--space-xs); }
+.gauge { width: 100%; height: 100%; }
+.gauge__zone, .gauge__value { fill: none; stroke-width: 7; stroke-linecap: butt; }
+.gauge__value { stroke-linecap: round; transition: stroke .3s; }
+.gauge__min { font-size: 8px; fill: var(--text-secondary); }
+.gauge__num { position: absolute; inset: 0; display: grid; place-content: center; text-align: center; padding-bottom: 6px; }
+.gauge__num b { font-size: 30px; line-height: 1; } .gauge__num span { font-size: 11px; color: var(--text-secondary); }
+
+.chip { display: inline-flex; align-items: center; gap: var(--space-xs); padding: var(--space-2xs) var(--space-sm); border-radius: 999px; font-size: 12px; background: var(--bg-raised); }
+.chip--normal { background: var(--zone-normal-tint); } .chip--hinweis { background: var(--zone-hinweis-tint); }
+.chip--warnung { background: var(--zone-warnung-tint); } .chip--kritisch { background: var(--zone-kritisch-tint); }
+
+.widget--fortschritt { flex-direction: column; gap: var(--space-sm); }
+.fortschritt__row { display: flex; justify-content: space-between; align-items: flex-end; }
+.rest { text-align: right; display: flex; flex-direction: column; } .rest b { font-size: 22px; }
+.bar { position: relative; height: 10px; border-radius: 5px; background: var(--track-default); margin-top: var(--space-md); }
+.bar__ist { height: 100%; border-radius: 5px; background: var(--zone-normal); transition: width .2s; }
+.zone-hinweis .bar__ist { background: var(--zone-hinweis); } .zone-warnung .bar__ist { background: var(--zone-warnung); } .zone-kritisch .bar__ist { background: var(--zone-kritisch); }
+.bar__fc { position: absolute; top: 0; height: 100%; background: var(--data-forecast-dim); }
+.bar__soll { position: absolute; top: -4px; width: 2px; height: 18px; background: var(--text-primary); }
+.bar__soll span { position: absolute; bottom: 22px; left: -22px; white-space: nowrap; font-size: 11px; color: var(--text-secondary); }
+.fortschritt__foot { display: flex; justify-content: space-between; align-items: center; }
+.prognose { border-top: 1px solid var(--border-default); padding-top: var(--space-md); display: grid; gap: var(--space-sm); }
+.prognose h4 { font-size: 13px; }
+.tiles { display: grid; grid-template-columns: 1fr 1fr; gap: var(--space-sm); }
+.tile { background: var(--bg-raised); border-radius: var(--radius-md); padding: var(--space-sm); display: flex; flex-direction: column; gap: 2px; }
+.tile b { font-size: 22px; } .tile .fc { color: var(--data-forecast); }
+
+.editor { background: var(--bg-surface); border: 1px solid var(--border-default); border-radius: var(--radius-lg); padding: var(--space-lg); display: grid; gap: var(--space-md); max-width: 560px; }
+.scale { display: flex; height: 16px; border-radius: 4px; overflow: hidden; gap: 2px; }
+.scale i { display: block; } .scale .z-hinweis { background: var(--zone-hinweis); } .scale .z-normal { background: var(--zone-normal); } .scale .z-warnung { background: var(--zone-warnung); } .scale .z-kritisch { background: var(--zone-kritisch); }
+.steppers { display: flex; gap: var(--space-md); flex-wrap: wrap; }
+.steppers label { display: grid; gap: var(--space-xs); }
+.steppers input { width: 96px; background: var(--bg-raised); border: 1px solid var(--border-default); border-radius: var(--radius-md); padding: var(--space-sm); }
+.toast { font-size: 12px; color: var(--text-secondary); min-height: 1.2em; }
+@media (prefers-reduced-motion: reduce) { * { transition: none !important; } }
+
+/* Visualisierungen */
+.viz { flex: 1 1 560px; max-width: 640px; background: var(--bg-surface); border: 1px solid var(--border-default); border-radius: var(--radius-lg); overflow: hidden; }
+.viz svg { display: block; width: 100%; height: auto; }
+.svgt { font-size: 12px; fill: var(--text-primary); font-family: inherit; }
+.svgt--title { font-size: 13px; font-weight: 600; }
+.svgt--cap { font-size: 11px; fill: var(--text-secondary); }
+
+/* Meldungs-Panel + Modal */
+.panel { width: 368px; max-width: 100%; }
+.msg { display: grid; gap: var(--space-xs); background: var(--bg-surface); border: 1px solid var(--border-default); border-radius: var(--radius-lg); padding: var(--space-lg); min-height: 176px; align-content: center; }
+.msg b { font-size: 18px; }
+.msg--normal { border-color: var(--zone-normal); background: var(--zone-normal-tint); }
+.msg--hinweis { border-color: var(--zone-hinweis); background: var(--zone-hinweis-tint); }
+.msg--warnung { border-color: var(--zone-warnung); background: var(--zone-warnung-tint); }
+.msg--kritisch { border-color: var(--zone-kritisch); background: var(--zone-kritisch-tint); }
+.actions { display: flex; gap: var(--space-sm); margin-top: var(--space-sm); }
+.btn-primary { background: var(--zone-warnung); color: var(--text-on-zone); border-color: transparent; font-weight: 600; }
+.btn-kritisch { background: var(--zone-kritisch); }
+.modal { position: fixed; inset: 0; background: color-mix(in srgb, var(--bg-app) 65%, transparent); display: grid; place-items: center; z-index: 10; }
+.modal[hidden] { display: none; }
+.modal__box { background: var(--bg-raised); border: 2px solid var(--zone-kritisch); border-radius: var(--radius-lg); padding: var(--space-xl); max-width: 460px; display: grid; gap: var(--space-md); }
+.modal__box h2 { display: flex; align-items: center; gap: var(--space-sm); font-size: 22px; color: var(--zone-kritisch); }
+.modal__box p { margin: 0; }
+
+#live { display: contents; }
+.panel .msg { height: 176px; min-height: 0; }
